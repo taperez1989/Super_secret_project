@@ -56,11 +56,25 @@
                             Gym and workout map.
                         </h2>
                         <br>
-                        <p class="has-text-centered">
+                        <div>
+                            <button id="openModal">add workout</button>
+                            <div id="myModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <h2>workout</h2>
+                                    <form id="myForm">
+                                        <label for="muscle-group">Muscle Group:</label>
+                                        <input type="text" id="name" name="name" required><br><br>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <p class="has-text-centered">
                             <a class="button is-medium is-black is-outlined" href="./index.html">
                                 Get Started
                             </a>
-                        </p>
+                        </p> -->
                     </main>
                 </div>
             </div>
