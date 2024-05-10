@@ -56,25 +56,28 @@
                             Gym and workout map.
                         </h2>
                         <br>
-                        <div>
-                            <button id="openModal">add workout</button>
-                            <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close">&times;</span>
-                                    <h2>workout</h2>
+                        <div id="modal-js" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <header class="modal-card-head">
+                                    <p class="modal-card-title">Workout Finder</p>
+                                    <button class="delete" aria-label="close"></button>
+                                </header>
+                                <section class="modal-card-body">
                                     <form id="myForm">
                                         <label for="muscle-group">Muscle Group:</label>
-                                        <input type="text" class="workout-entry" name="name" required><br><br>
-                                        <button type="submit">Submit</button>
+                                        <input type="text" id="name" name="name" required><br><br>
+                                        <button type="submit" class="button is-success">Submit</button>
                                     </form>
-                                </div>
+                                </section>
+                                <footer class="modal-card-foot">
+                                    <div class="buttons">
+                                        <button class="button">Cancel</button>
+                                    </div>
+                                </footer>
                             </div>
                         </div>
-                        <!-- <p class="has-text-centered">
-                            <a class="button is-medium is-black is-outlined" href="./index.html">
-                                Get Started
-                            </a>
-                        </p> -->
+                        <button class="js-modal-trigger" data-target="modal-js">Add Workout</button>
                     </main>
                 </div>
             </div>
