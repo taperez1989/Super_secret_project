@@ -13,9 +13,12 @@
     <header>
         <h1>Fitness Finder</h1>
         <nav>
-            <label>Gym Locator</label>
-            <input class="search-input" type="text" placeholder="Search City">
-            <button class="search-button">Search</button>
+            <div class="input-container">
+                <label>Gym Locator</label>
+                <input class="search-input" type="text" placeholder="Search City">
+                <button class="search-button">Search</button>
+                <span class="error" id="searchCityError"></span>
+            </div>
             <!-- link button to second page "click event" & "location.href" -->
             <a href="">About Us</a>
             <a href="">Help</a>
@@ -24,11 +27,11 @@
 
     <section class="flex-container">
         <aside class="flex-item-left">
-            
+
         </aside>
 
         <main class="flex-item-right">
-            
+
         </main>
     </section>
 
@@ -44,8 +47,8 @@
             MIT License Copyright (c) 2024
         </div>
     </footer>
-    
-    <script src="./assets/js/landing.js"></script>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
