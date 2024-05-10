@@ -1,5 +1,48 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Functions to open and close a modal
+    function openModal($el) {
+        $el.classList.add('is-active');
+    }
+
+    function closeModal($el) {
+        $el.classList.remove('is-active');
+    }
+
+    function closeAllModals() {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
+
+    // Add a click event on buttons to open a specific modal
+    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+
+        $trigger.addEventListener('click', () => {
+            openModal($target);
+        });
+    });
+
+    // Add a click event on various child elements to close the parent modal
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        const $target = $close.closest('.modal');
+
+        $close.addEventListener('click', () => {
+            closeModal($target);
+        });
+    });
+
+    // Add a keyboard event to close all modals
+    document.addEventListener('keydown', (event) => {
+        if (event.key === "Escape") {
+            closeAllModals();
+        }
+    });
+});
 // Get the modal
 let modal = document.getElementById("myModal");
+
 
 // Get the button that opens the modal
 let btn = document.getElementById("openModal");
@@ -12,7 +55,11 @@ let taskId = 0;
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
-    modal.style.display = "block";
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.id === 'openModal') {
+            modal.style.display = "block";
+        }
+    });
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -30,7 +77,7 @@ window.onclick = function (event) {
 
 // Ninja API for workout data fetch
 const workoutSearchEntry = document.querySelector('.workout-entry'); //replace with respective HTML class/ID
-const workoutSubmit = document.querySelector('.workout-submit'); //replace with HTML
+const workoutSubmit = document.querySelector('#workout-submit'); //replace with HTML
 const apiWorkoutKey = 'qn/zcJQkQfpyU7iVcOwjfg==jdIi92gLftIqjh63';
 
 //API call to populate workouts based on search entry/muscle group
@@ -45,6 +92,6 @@ function getNinjaApi(event) {
         })
         .then(function (data) {
             console.log(data);
-            
+
         })
 }
