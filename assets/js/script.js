@@ -1,4 +1,4 @@
-const apiUrl = 'https://places.ls.hereapi.com/places/v1/discover/here';
+const apiUrl = 'https://browse.search.hereapi.com/v1';
 const apiKey = 'Fk5s-l66WnXrM9wD_DrgKEEIWbHHyqKEZkvafd4M208';
 
 async function fetchGyms(city) {
@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const gymsData = await fetchGyms(city);
             if (gymsData && gymsData.length > 0) {
+                // Clear previous listings
                 gymsList.innerHTML = '';
 
+                // Display gym listings
                 gymsData.forEach(gym => {
                     const gymItem = document.createElement('div');
                     gymItem.classList.add('gym-item');
