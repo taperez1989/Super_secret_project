@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fitness Finder</title>
-    <link rel="reset" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-
 <body>
     <header>
         <h1>Fitness Finder</h1>
         <nav>
-            <label>Gym Locator</label>
-            <input class="search-input" type="text" placeholder="Search City">
-            <button class="search-button">Search</button>
-            <!-- link button to second page "click event" & "location.href" -->
+            <label>City:</label>
+            <input id="cityInput" class="search-input" type="text" placeholder="Enter City">
+            <button id="searchButton" class="search-button">Search</button>
             <a href="">About Us</a>
             <a href="">Help</a>
         </nav>
@@ -24,11 +21,9 @@
 
     <section class="flex-container">
         <aside class="flex-item-left">
-            
         </aside>
 
-        <main class="flex-item-right">
-            
+        <main id="gymsList" class="flex-item-right">
         </main>
     </section>
 
@@ -44,8 +39,7 @@
             MIT License Copyright (c) 2024
         </div>
     </footer>
-    
-    <script src="./assets/js/landing.js"></script>
-</body>
 
+    <script src="./assets/js/script.js"></script>
+</body>
 </html>
