@@ -42,31 +42,72 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Ninja API for workout data fetch
-const workoutSearchEntry = document.getElementById('muscle-group'); 
-const workoutSubmit = document.getElementById('workout-submit'); 
+const workoutSearchEntry = document.getElementById('muscle-group');
+const workoutSubmit = document.getElementById('workout-submit');
 
 //API call to populate workouts based on search entry/muscle group
-function getNinjaApi(event) {
+const getNinjaApi = (event) => {
   event.preventDefault();
+
   //fetch request
   const requestNinjaUrl = `https://api.api-ninjas.com/v1/exercises?muscle=${workoutSearchEntry.value}&limit=10`;
-
   let options = {
     method: 'GET',
     headers: { 'x-api-key': 'qn/zcJQkQfpyU7iVcOwjfg==jdIi92gLftIqjh63' }
   }
+
   fetch(requestNinjaUrl, options)
-    .then(function (response) {
+    .then((response) => {
       return response.json();
     })
-    .then(function (data) {
+    .then((data) => {
       console.log('this is my list of data', data);
+      let workoutResult = [];
 
+      for (let i = 0; i < data.length; i++) {
+        let workoutName = data[i].name;
+        let workoutMuscle = data[i].muscle;
+        let workoutEquipment = data[i].equipment;
+        let workoutInstruction = data[i].instructions;
+
+        // create an object for extracted workout data
+        let singleWorkoutData = {
+          name: workoutName,
+          muscle: workoutMuscle,
+          equipment: workoutEquipment,
+          instructions: workoutInstruction
+        };
+
+        // push object 'singleWorkoutData' into the array 'workoutResult'
+        workoutResult.push(singleWorkoutData);
+        console.log('SINGLE workout card', singleWorkoutData);
+      }
+
+      // Close the modal after processing the API response (copied from first part of modal...)
+      function closeModal($el) {
+        $el.classList.remove('is-active');
+      }
+      function closeAllModals() {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+          closeModal($modal);
+        });
+      }
+      closeAllModals();
+      console.log('this is my data as an array', workoutResult); //checks if generated array holds data
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.error('Error fetching data:', error);
-  });
-}
+    });
+};
 
-// function to submit muscle group entry 
-workoutSubmit.addEventListener('click', getNinjaApi);
+// target cards in HTML
+const card = document.querySelector('.card');
+
+// Event listener for workoutSubmit button
+workoutSubmit.addEventListener('click', (event) => {
+  getNinjaApi(event);
+
+  if (workoutSearchEntry.value.trim() !== '') {
+    card.style.display = 'block';
+  }
+});
