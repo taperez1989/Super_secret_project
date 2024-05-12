@@ -48,9 +48,9 @@ body {
 }
 
 /* hiding workout cards until muscle-group entry submitted */
-.card {
+/* .card {
   display: none;
-}
+} */
 
 .footer {
   position: fixed;
