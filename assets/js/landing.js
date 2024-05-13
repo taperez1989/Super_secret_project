@@ -63,10 +63,10 @@ const getNinjaApi = (event) => {
     .then((data) => {
       console.log('this is my list of data', data);
       let workoutResult = [];
-      const workoutContainer = document.querySelector('.card');
+      const workoutContainer = document.querySelector('.workout-results');
 
 
-      for (let i = 0; i < data.length; i += 3) {
+      for (let i = 0; i < data.length; i += 5) {
         let workoutName = data[i].name;
         let workoutMuscle = data[i].muscle;
         let workoutEquipment = data[i].equipment;
@@ -84,22 +84,36 @@ const getNinjaApi = (event) => {
         workoutResult.push(singleWorkoutData);
         console.log('SINGLE workout card', singleWorkoutData);
 
-        const Card = document.querySelector('.content');
-        Card.classList.add('workout-card');
+        const card = document.createElement('div');
+        card.classList.add('card'); // Add Bulma's card class to style the card
 
-        const exercise = document.createElement('h3');
+        // create elements for workout details
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('card-content');
+
+        const exercise = document.createElement('p');
+        exercise.classList.add('title', 'is-4'); // Add Bulma's title class to style the exercise name
+
         const muscle = document.createElement('p');
-        const equipment = document.createElement('p');
-        const instruction = document.createElement('p');
+        muscle.classList.add('subtitle', 'is-6'); // Add Bulma's subtitle class to style the muscle
 
+        const equipment = document.createElement('p');
+        equipment.classList.add('subtitle', 'is-6'); // Add Bulma's subtitle class to style the equipment
+
+        const instruction = document.createElement('p');
+        instruction.classList.add('content'); // Add Bulma's content class to style the instruction
+
+        // set content for elements
         exercise.textContent = workoutName;
-        muscle.textContent = workoutMuscle;
-        equipment.textContent = workoutEquipment;
+        muscle.textContent = "Muscle: " + workoutMuscle;
+        equipment.textContent = "Equipment: " + workoutEquipment;
         instruction.textContent = workoutInstruction;
 
-        Card.append(exercise, muscle, equipment, instruction);
+        // append elements to card
+        cardContent.append(exercise, muscle, equipment, instruction);
+        card.append(cardContent);
 
-        workoutContainer.append(Card);
+        workoutContainer.append(card);
       }
 
       // Close the modal after processing the API response (copied from first part of modal...)
