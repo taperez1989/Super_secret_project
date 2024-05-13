@@ -85,29 +85,42 @@ const getNinjaApi = (event) => {
         console.log('SINGLE workout card', singleWorkoutData);
 
         const card = document.createElement('div');
-        card.classList.add('card'); // Add Bulma's card class to style the card
+        // Add Bulma's card class to style the card
+        card.classList.add('card');
+        // centers content horizontally
+        card.classList.add('mx-auto');
+        // sets max width
+        card.style.maxWidth = '600px';
+
+      
 
         // create elements for workout details
         const cardContent = document.createElement('div');
         cardContent.classList.add('card-content');
 
+        cardContent.style.maxHeight = '200px';
+        // allows a vertical scrolling feature
+        cardContent.style.overflowY = 'auto';
+
         const exercise = document.createElement('p');
-        exercise.classList.add('title', 'is-4'); // Add Bulma's title class to style the exercise name
+        // add bulma css style to cards
+        exercise.classList.add('title', 'is-4');
 
         const muscle = document.createElement('p');
-        muscle.classList.add('subtitle', 'is-6'); // Add Bulma's subtitle class to style the muscle
+        muscle.classList.add('subtitle', 'is-6');
 
         const equipment = document.createElement('p');
-        equipment.classList.add('subtitle', 'is-6'); // Add Bulma's subtitle class to style the equipment
+        equipment.classList.add('subtitle', 'is-6');
 
         const instruction = document.createElement('p');
-        instruction.classList.add('content'); // Add Bulma's content class to style the instruction
+        instruction.classList.add('content');
 
         // set content for elements
         exercise.textContent = workoutName;
         muscle.textContent = "Muscle: " + workoutMuscle;
         equipment.textContent = "Equipment: " + workoutEquipment;
         instruction.textContent = workoutInstruction;
+
 
         // append elements to card
         cardContent.append(exercise, muscle, equipment, instruction);
