@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,16 +8,12 @@
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
     <header>
-        <h1>Fitness Finder</h1>
+        <h1><span>Fitness Finder</span></h1>
         <nav>
-
-            <label>City:</label>
-            <input id="cityInput" class="search-input" type="text" placeholder="Enter City">
-            <button id="searchButton" class="search-button">Search</button>
-
-            <div class="input-container">
+            <div id="input-container" class="input-container">
                 <label>Gym Locator</label>
                 <input class="search-input" type="text" placeholder="Search City">
                 <button class="search-button">Search</button>
@@ -24,33 +21,92 @@
             </div>
             <!-- link button to second page "click event" & "location.href" -->
 
-            <a href="">About Us</a>
-            <a href="">Help</a>
+            <a href="#about-us">About Us</a>
+            <a href="#help">Help</a>
         </nav>
     </header>
 
-    <section class="flex-container">
-        <aside class="flex-item-left">
+    <div class="container">
+        <section class="flex-grid">
+            <main class="col">
+                <h2>One of a Kind</h2>
+                <p>
+                    We love fitness! As the first gym centered finder, our goal is to provide the travel community
+                    with a easy to use, state-of-the-art website that will bring people of all origins to the gym best
+                    suited for them... and we've done just that.
+                </p>
+            </main>
 
-        </aside>
+            <aside class="col">
+                <img class="side" src="./assets/images/ai-map.jpeg" alt="map with pings" />
+            </aside>
 
-        <main id="gymsList" class="flex-item-right">
+        </section>
 
+        <section class="flex-grid">
 
-        </aside>
+            <aside class="col">
+                <img class="side" src="./assets/images/couple-fitness.jpeg" alt="fitness couple" />
+            </aside>
 
-        <main class="flex-item-right">
+            <main class="col">
+                <h2>A Home for Everyone</h2>
+                <p>
+                    We know the goals of one may be completely different than the goals of another. Whether your goal is
+                    to lose weight, gain weight, lift 500lbs, run a 5k, just work out a little more frequently, or not
+                    think about work/life for 10 minutes, Fitness Finder can help you get there.
+                </p>
+            </main>
 
+        </section>
 
-        </main>
-    </section>
+        <section class="flex-grid">
+
+            <main class="col">
+                <h2 id="about-us">About Us</h2>
+                <p>
+                    We strive to create a website where you can quickly load in and find a list of the nearest gyms to
+                    you.
+                    We understand that life never stops moving and you shouldn't either just because you're somewhere
+                    unknown. That's why we made this software so easy to use, whether you're a first-time gym user or a
+                    fitness veteran.
+                </p>
+            </main>
+
+            <aside class="col">
+                <img class="side" src="./assets/images/finding.jpeg" alt="man using phone" />
+            </aside>
+
+        </section>
+
+        <section class="flex-grid">
+
+            <aside class="col">
+                <img class="side" src="./assets/images/question.jpeg" alt="question mark image" />
+            </aside>
+
+            <main class="col">
+                <h2 id="help">Help</h2>
+                <p>
+                    We want to stress how easy to use this website is by having the interactive part right where you
+                    load
+                    in. To get started simply type in the city you are currently in at the top of the page and you will
+                    get
+                    a list of the nearest gyms to you. To be taken back to the top of the page simply click the
+                    convenient
+                    "Get Started" button at the bottomm of the page.
+                </p>
+            </main>
+
+        </section>
+    </div>
 
     <footer class="footer">
         <div class="row">
             <ul>
-                <li><a href="./landing.html">Home</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Help</a></li>
+                <li><a href="#input-container">Get Started</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#help">Help</a></li>
             </ul>
         </div>
         <div class="row">
@@ -61,5 +117,4 @@
     <script src="./assets/js/script.js"></script>
 </body>
 
-</body>
 </html>
