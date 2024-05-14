@@ -47,8 +47,27 @@ body {
   background-color: #2e333d;
 }
 
+.wrapper {
+  display: grid;
+  grid-gap: 0px;
+  grid-template-columns: repeat(2, 50vw);
+  grid-template-rows: 50vh;
+  background-color: #fff;
+  color: #444;
+}
+
+.content {
+  height: 400px;
+  padding: 10px;
+}
+
+.column-image {
+  background: url("/assets/images/fitness.png")
+      no-repeat center/cover;
+}
+
 .footer {
-  position: fixed;
+  position: relative;
   bottom: 0px;
   width: 100%;
   background: #14161a;
@@ -86,24 +105,6 @@ body {
 .footer .row a i {
   font-size: 2em;
   margin: 0% 1%;
-}
-
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.flex-item-left {
-  flex: 50%;
-  min-width: 350px;
-}
-
-.flex-item-right {
-  flex: 50%;
-  min-width: 350px;
 }
 
 @media (max-width:720px) {
