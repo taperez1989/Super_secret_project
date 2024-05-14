@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fitness Finder</title>
-    <link rel="reset" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-
 <body>
     <header>
         <h1>Fitness Finder</h1>
         <nav>
+
+            <label>City:</label>
+            <input id="cityInput" class="search-input" type="text" placeholder="Enter City">
+            <button id="searchButton" class="search-button">Search</button>
+
             <div class="input-container">
                 <label>Gym Locator</label>
                 <input class="search-input" type="text" placeholder="Search City">
@@ -20,6 +23,7 @@
                 <span class="error" id="searchCityError"></span>
             </div>
             <!-- link button to second page "click event" & "location.href" -->
+
             <a href="">About Us</a>
             <a href="">Help</a>
         </nav>
@@ -30,7 +34,13 @@
 
         </aside>
 
+        <main id="gymsList" class="flex-item-right">
+
+
+        </aside>
+
         <main class="flex-item-right">
+
 
         </main>
     </section>
@@ -51,4 +61,6 @@
     <script src="./assets/js/script.js"></script>
 </body>
 
+    <script src="./assets/js/script.js"></script>
+</body>
 </html>
