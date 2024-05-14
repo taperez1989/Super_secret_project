@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Ninja API for workout data fetch
 const workoutSearchEntry = document.getElementById('muscle-group');
 const workoutSubmit = document.getElementById('workout-submit');
-const workoutResult = [];
+let workoutResult = [];
 
 //API call to populate workouts based on search entry/muscle group
 const getNinjaApi = (event) => {
@@ -63,9 +63,6 @@ const getNinjaApi = (event) => {
     })
     .then((data) => {
       console.log('this is my list of data', data);
-
-      const workoutContainer = document.querySelector('.workout-results');
-
 
       for (let i = 0; i < data.length; i += 2) {
         let workoutName = data[i].name;
@@ -86,15 +83,22 @@ const getNinjaApi = (event) => {
         // push object 'singleWorkoutData' into the array 'workoutResult'
         workoutResult.push(singleWorkoutData);
         console.log('SINGLE workout card', singleWorkoutData);
+        renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID); //call render function within loop
 
       }; // close for loop
       console.log('workout result', workoutResult);
-      renderCard(singleWorkoutData);
+    })
+
+    .catch ((error) => {
+      console.error('Error fetching data:', error);
     });
+    
 };
-// render function
-function renderCard(workoutData) {
+// render function to generate cards with workout data and delete button functionality
+function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID) {
+
   const card = document.createElement('div');
+  const workoutContainer = document.querySelector('.workout-results');
 
   // Add Bulma's card class to style the card
   card.classList.add('card');
@@ -127,7 +131,7 @@ function renderCard(workoutData) {
   // create button to remove workout cards (from bulma, does NOT render appropriately)
   const deleteWorkoutButton = document.createElement('button');
   deleteWorkoutButton.classList.add('is-danger', 'is-dark', 'is-normal');
-  console.log(workoutData);// THIS IS WHERE ANTHONY LEFT US
+  console.log(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID);
 
   // set content for elements
   exercise.textContent = workoutName;
@@ -147,63 +151,12 @@ function renderCard(workoutData) {
   //function to remove workout card
   deleteWorkoutButton.addEventListener('click', (event) => {
     let cardIdToRemove = parseInt(event.target.dataset.id);
-    let updatedWorkoutCards = workoutResult.filter(card => card.id !== cardIdToRemove);
-    console.log(updatedWorkoutCards);
-  })
-  
-};
-
-
-
-// Close the modal after processing the API response (copied from first part of modal...)
-function closeModal($el) {
-  $el.classList.remove('is-active');
-}
-function closeAllModals() {
-  (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-    closeModal($modal);
+    workoutResult = workoutResult.filter(card => card.id !== cardIdToRemove);
+    console.log(workoutResult);
+    //remove targeted card's HTML element
+    event.target.closest('.card').remove();
   });
-}
-closeAllModals();
-console.log('this is my data as an array', workoutResult);//checks if generated array holds data
-
-// return data;
-
-  // .then(function (data) {
-
-  //   const workoutContainer = document.querySelector('.workout-results');
-
-  //   let workoutName = data.name;
-  //   let workoutMuscle = data.muscle;
-  //   let workoutEquipment = data.equipment;
-  //   let workoutInstruction = data.instructions;
-
-  //   const workoutCard = document.createElement('div');
-  //   workoutCard.classList.add('workout-card');
-
-  //   const exercise = document.createElement('h3');
-  //   const muscle = document.createElement('p');
-  //   const equipment = document.createElement('p');
-  //   const instruction = document.createElement('p');
-
-  //   exercise.textContent = workoutName;
-  //   muscle.textContent = workoutMuscle;
-  //   equipment.textContent = workoutEquipment;
-  //   instruction.textContent = workoutInstruction;
-
-  //   workoutCard.append(exercise, muscle, equipment, equipment);
-
-  //   workoutContainer.append(workoutCard);
-
-  //   return data;
-  // })
-//   .catch ((error) => {
-//   console.error('Error fetching data:', error);
-// };
-
-
-
-
+};
 
 // target cards in HTML
 const card = document.querySelector('.card');
@@ -215,4 +168,17 @@ workoutSubmit.addEventListener('click', (event) => {
   if (workoutSearchEntry.value.trim() !== '' && card !== null) {
     card.classList.add('card');
   }
+
+  //this may need to be MOVED since some elements might be out of scope
+  // Close the modal after processing the API response (copied from first part of modal...)
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+  closeAllModals();
+  console.log('this is my data as an array', workoutResult);//checks if generated array holds data
 });
