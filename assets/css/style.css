@@ -47,6 +47,11 @@ body {
   background-color: #2e333d;
 }
 
+/* hiding workout cards until muscle-group entry submitted */
+/* .card {
+  display: none;
+} */
+
 .footer {
   position: fixed;
   bottom: 0px;
