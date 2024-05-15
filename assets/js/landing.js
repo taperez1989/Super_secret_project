@@ -168,7 +168,7 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
   const instruction = document.createElement('p');
   instruction.classList.add('content');
 
-  // create button to remove workout cards (from bulma, does NOT render appropriately)
+  // create button to remove workout cards 
   const deleteWorkoutButton = document.createElement('button');
   deleteWorkoutButton.classList.add('button', 'is-danger', 'is-dark', 'is-normal');
   console.log(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID);
@@ -196,7 +196,13 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
     //remove targeted card's HTML element
     event.target.closest('.card').remove();
   });
+<<<<<<< Updated upstream
 };
+=======
+}
+closeAllModals();
+console.log('this is my data as an array', workoutResult);//checks if generated array holds data
+>>>>>>> Stashed changes
 
 
 // target cards in HTML

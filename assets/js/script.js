@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const fetch = require('node-fetch');
 
 async function searchGyms(city) {
@@ -19,6 +20,20 @@ async function searchGyms(city) {
       'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
     }
 
+=======
+const gymSearch = document.querySelector('.search-button');
+
+gymSearch.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const searchedCity = document.querySelector('.search-input').value;
+
+    if (searchedCity === '') {
+        window.alert('Enter City');
+
+        return;
+    }
+>>>>>>> Stashed changes
 
     const cities = {
         searchedCity,
@@ -37,6 +52,7 @@ async function searchGyms(city) {
     
 });
 
+<<<<<<< Updated upstream
 // const fetch = require('node-fetch');
 // move api funtion to landing js and create elements etc.
 
@@ -52,3 +68,25 @@ async function searchGyms(city) {
   }
 }
 
+=======
+const searchInputVal = document.querySelector('.search-input').value;
+
+const url = `http://api.yelp.com/v3/businesses/search/text=${searchInputVal}`
+const apiKey = 'MM7LUMMMQTfGrSVJFjtclhfT4crehf4peA4jQCmnt2YbhWOZo9uAoqWrpop|pGqpo15/7531bE6W/vrGFjkgn7FFZHAkpg3pXyZIZmT1hfvRnMXpdX_-i_c9CZnY×'
+
+fetch(url, {
+    method: 'GET',
+    headers: {
+        'authorization': 'Bearer ${MM7LUMMMQTfGrSVJFjtclhfT4crehf4peA4jQCmnt2YbhWOZo9uAoqWrpop|pGqpo15/7531bE6W/vrGFjkgn7FFZHAkpg3pXyZIZmT1hfvRnMXpdX_-i_c9CZnY×}',
+        'Accept': 'application/json'
+    }
+})
+    .then(function (response) {
+        if (!response.ok) {
+            throw response.json('Network response not ok');
+        }
+        return response.json();
+        
+    })
+console.log(response);
+>>>>>>> Stashed changes
