@@ -89,6 +89,8 @@ const getNinjaApi = (event) => {
       console.log('workout result', workoutResult);
     })
 
+
+    
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
