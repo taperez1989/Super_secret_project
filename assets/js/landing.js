@@ -143,40 +143,43 @@ const getNinjaApi = (event) => {
 
       return data;
     })
-    // .then(function (data) {
-
-    //   const workoutContainer = document.querySelector('.workout-results');
-
-    //   let workoutName = data.name;
-    //   let workoutMuscle = data.muscle;
-    //   let workoutEquipment = data.equipment;
-    //   let workoutInstruction = data.instructions;
-
-    //   const workoutCard = document.createElement('div');
-    //   workoutCard.classList.add('workout-card');
-
-    //   const exercise = document.createElement('h3');
-    //   const muscle = document.createElement('p');
-    //   const equipment = document.createElement('p');
-    //   const instruction = document.createElement('p');
-
-    //   exercise.textContent = workoutName;
-    //   muscle.textContent = workoutMuscle;
-    //   equipment.textContent = workoutEquipment;
-    //   instruction.textContent = workoutInstruction;
-
-    //   workoutCard.append(exercise, muscle, equipment, equipment);
-
-    //   workoutContainer.append(workoutCard);
-
-    //   return data;
-    // })
+    
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
 };
 
+async function searchGyms(city) {
+  const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
+  const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
 
+  const queryParams = new URLSearchParams({
+    query: `Gyms in ${city}`,
+    limit: 20,
+    language: 'en',
+    region: 'us'
+  });
+
+  const url = `${apiUrl}?${queryParams}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+
+
+  } catch (error) {
+    console.error('Error fetching gym data:', error);
+    return null;
+  }
+
+}
 
 
 // target cards in HTML
