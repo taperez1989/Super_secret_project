@@ -89,12 +89,12 @@ const getNinjaApi = (event) => {
       console.log('workout result', workoutResult);
     })
 
-    
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
 };
 
+// API function for gym locator from index html
 async function searchGyms(city) {
   const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
   const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
@@ -119,21 +119,12 @@ async function searchGyms(city) {
     const response = await fetch(url, options);
     const result = await response.json();
 
-
   } catch (error) {
     console.error('Error fetching gym data:', error);
     return null;
   }
-
-}
-
-
-
-    .catch ((error) => {
-      console.error('Error fetching data:', error);
-    });
-    
 };
+
 // render function to generate cards with workout data and delete button functionality
 function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID) {
 
@@ -196,13 +187,7 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
     //remove targeted card's HTML element
     event.target.closest('.card').remove();
   });
-<<<<<<< Updated upstream
 };
-=======
-}
-closeAllModals();
-console.log('this is my data as an array', workoutResult);//checks if generated array holds data
->>>>>>> Stashed changes
 
 
 // target cards in HTML
