@@ -89,6 +89,46 @@ const getNinjaApi = (event) => {
       console.log('workout result', workoutResult);
     })
 
+    
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+};
+
+async function searchGyms(city) {
+  const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
+  const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
+
+  const queryParams = new URLSearchParams({
+    query: `Gyms in ${city}`,
+    limit: 20,
+    language: 'en',
+    region: 'us'
+  });
+
+  const url = `${apiUrl}?${queryParams}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+
+
+  } catch (error) {
+    console.error('Error fetching gym data:', error);
+    return null;
+  }
+
+}
+
+
+
     .catch ((error) => {
       console.error('Error fetching data:', error);
     });
@@ -157,6 +197,7 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
     event.target.closest('.card').remove();
   });
 };
+
 
 // target cards in HTML
 const card = document.querySelector('.card');

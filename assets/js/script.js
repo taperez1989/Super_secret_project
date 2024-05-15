@@ -18,6 +18,28 @@ async function searchGyms(city) {
       'X-RapidAPI-Key': apiKey,
       'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
     }
+
+
+    const cities = {
+        searchedCity,
+    };
+
+    const city = JSON.parse(localStorage.getItem("city")) || [];
+
+    city.push(cities);
+
+    localStorage.setItem("city", JSON.stringify(city));
+
+    searchGyms(searchedCity);
+
+    location.href = "landing.html";
+
+    
+});
+
+// const fetch = require('node-fetch');
+// move api funtion to landing js and create elements etc.
+
   };
 
   try {
@@ -29,3 +51,4 @@ async function searchGyms(city) {
     return null;
   }
 }
+
