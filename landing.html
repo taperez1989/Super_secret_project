@@ -55,7 +55,7 @@
                         <h2 class="subtitle is-4">
                             Gym and workout map.
                         </h2>
-                        <br>
+                        <br> <!--modal from bulma-->
                         <div id="modal-js" class="modal">
                             <div class="modal-background"></div>
                             <div class="modal-card">
@@ -64,45 +64,37 @@
                                     <button class="delete" aria-label="close"></button>
                                 </header>
                                 <section class="modal-card-body">
+                                    <br></br>
                                     <form id="myForm">
-                                        <label for="muscle-group">Muscle Group:</label>
-                                        <!-- ORIGINAL INPUT FORM IN CASE DROP DOWN DOESNT WORK -->
-                                        <!-- <input type="text" id="muscle-group" name="name" required><br><br> -->
-                                        <!-- ATTEMPT AT DROPDOWN HTML INSERTION -->
-                                        <div class="dropdown is-active">
-                                            <div class="dropdown-trigger">
-                                                <button class="button" aria-haspopup="true"
-                                                    aria-controls="dropdown-menu">
-                                                    <span>Muscle Group</span>
-                                                    <span class="icon is-small">
-                                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                                <div class="dropdown-content">
-                                                    <a href="#" class="dropdown-item"> abdominals </a>
-                                                    <a href="#" class="dropdown-item"> abductors </a>
-                                                    <a href="#" class="dropdown-item"> adductors </a>
-                                                    <a href="#" class="dropdown-item"> biceps </a>
-                                                    <a href="#" class="dropdown-item"> calves </a>
-                                                    <a href="#" class="dropdown-item"> chest</a>
-                                                    <a href="#" class="dropdown-item"> forearms </a>
-                                                    <a href="#" class="dropdown-item"> glutes </a>
-                                                    <a href="#" class="dropdown-item"> lats </a>
-                                                    <a href="#" class="dropdown-item"> lower back </a>
-                                                    <a href="#" class="dropdown-item"> middle back </a>
-                                                    <a href="#" class="dropdown-item"> neck </a>
-                                                    <a href="#" class="dropdown-item"> quadriceps </a>
-                                                    <a href="#" class="dropdown-item"> traps </a>
-                                                    <a href="#" class="dropdown-item"> triceps </a>
-                                                    <a href="#" class="dropdown-item"> hamstrings </a>
+                                        <div class="field">
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select id="muscle-group">
+                                                        <option>abdominals</option>
+                                                        <option>abductors</option>
+                                                        <option>adductors</option>
+                                                        <option>biceps</option>
+                                                        <option>calves</option>
+                                                        <option>chest</option>
+                                                        <option>forearms</option>
+                                                        <option>glutes</option>
+                                                        <option>hamstrings</option>
+                                                        <option>lats</option>
+                                                        <option>lower back</option>
+                                                        <option>middle back</option>
+                                                        <option>neck</option>
+                                                        <option>quadriceps</option>
+                                                        <option>traps</option>
+                                                        <option>triceps</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <button type="submit" id="workout-submit"
                                             class="button is-success">Submit</button>
                                     </form>
+                                    <br></br>
+                                    <br></br>
                                 </section>
                                 <footer class="modal-card-foot">
                                     <div class="buttons">
