@@ -128,7 +128,7 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
   const instruction = document.createElement('p');
   instruction.classList.add('content');
 
-  // create button to remove workout cards (from bulma, does NOT render appropriately)
+  // create button to remove workout cards 
   const deleteWorkoutButton = document.createElement('button');
   deleteWorkoutButton.classList.add('button', 'is-danger', 'is-dark', 'is-normal');
   console.log(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID);
