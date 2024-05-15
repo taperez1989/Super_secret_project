@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Ninja API for workout data fetch
 const workoutSearchEntry = document.getElementById('muscle-group');
 const workoutSubmit = document.getElementById('workout-submit');
+let workoutResult = [];
 
 //API call to populate workouts based on search entry/muscle group
 const getNinjaApi = (event) => {
@@ -62,87 +63,32 @@ const getNinjaApi = (event) => {
     })
     .then((data) => {
       console.log('this is my list of data', data);
-      let workoutResult = [];
-      const workoutContainer = document.querySelector('.workout-results');
 
-
-      for (let i = 0; i < data.length; i += 5) {
+      for (let i = 0; i < data.length; i += 2) {
         let workoutName = data[i].name;
         let workoutMuscle = data[i].muscle;
         let workoutEquipment = data[i].equipment;
         let workoutInstruction = data[i].instructions;
+        let workoutID = Math.floor(Math.random() * 1000); //this assigns unique ID to filter out to remove/delete workout cards 
 
         // create an object for extracted workout data
         let singleWorkoutData = {
           name: workoutName,
           muscle: workoutMuscle,
           equipment: workoutEquipment,
-          instructions: workoutInstruction
+          instructions: workoutInstruction,
+          id: workoutID
         };
 
         // push object 'singleWorkoutData' into the array 'workoutResult'
         workoutResult.push(singleWorkoutData);
         console.log('SINGLE workout card', singleWorkoutData);
+        renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID); //call render function within loop
 
-        const card = document.createElement('div');
-        // Add Bulma's card class to style the card
-        card.classList.add('card');
-        // centers content horizontally
-        card.classList.add('mx-auto');
-        // sets max width
-        card.style.maxWidth = '600px';
-
-      
-
-        // create elements for workout details
-        const cardContent = document.createElement('div');
-        cardContent.classList.add('card-content');
-
-        cardContent.style.maxHeight = '200px';
-        // allows a vertical scrolling feature
-        cardContent.style.overflowY = 'auto';
-
-        const exercise = document.createElement('p');
-        // add bulma css style to cards
-        exercise.classList.add('title', 'is-4');
-
-        const muscle = document.createElement('p');
-        muscle.classList.add('subtitle', 'is-6');
-
-        const equipment = document.createElement('p');
-        equipment.classList.add('subtitle', 'is-6');
-
-        const instruction = document.createElement('p');
-        instruction.classList.add('content');
-
-        // set content for elements
-        exercise.textContent = workoutName;
-        muscle.textContent = "Muscle: " + workoutMuscle;
-        equipment.textContent = "Equipment: " + workoutEquipment;
-        instruction.textContent = workoutInstruction;
-
-
-        // append elements to card
-        cardContent.append(exercise, muscle, equipment, instruction);
-        card.append(cardContent);
-
-        workoutContainer.append(card);
-      }
-
-      // Close the modal after processing the API response (copied from first part of modal...)
-      function closeModal($el) {
-        $el.classList.remove('is-active');
-      }
-      function closeAllModals() {
-        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-          closeModal($modal);
-        });
-      }
-      closeAllModals();
-      console.log('this is my data as an array', workoutResult);//checks if generated array holds data
-
-      return data;
+      }; // close for loop
+      console.log('workout result', workoutResult);
     })
+
     
     .catch((error) => {
       console.error('Error fetching data:', error);
@@ -182,6 +128,77 @@ async function searchGyms(city) {
 }
 
 
+
+    .catch ((error) => {
+      console.error('Error fetching data:', error);
+    });
+    
+};
+// render function to generate cards with workout data and delete button functionality
+function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID) {
+
+  const card = document.createElement('div');
+  const workoutContainer = document.querySelector('.workout-results');
+
+  // Add Bulma's card class to style the card
+  card.classList.add('card');
+  // centers content horizontally
+  card.classList.add('mx-auto');
+  // sets max width
+  card.style.maxWidth = '600px';
+
+  // create elements for workout details
+  const cardContent = document.createElement('div');
+  cardContent.classList.add('card-content');
+
+  cardContent.style.maxHeight = '200px';
+  // allows a vertical scrolling feature
+  cardContent.style.overflowY = 'auto';
+
+  const exercise = document.createElement('p');
+  // add bulma css style to cards
+  exercise.classList.add('title', 'is-4');
+
+  const muscle = document.createElement('p');
+  muscle.classList.add('subtitle', 'is-6');
+
+  const equipment = document.createElement('p');
+  equipment.classList.add('subtitle', 'is-6');
+
+  const instruction = document.createElement('p');
+  instruction.classList.add('content');
+
+  // create button to remove workout cards (from bulma, does NOT render appropriately)
+  const deleteWorkoutButton = document.createElement('button');
+  deleteWorkoutButton.classList.add('button', 'is-danger', 'is-dark', 'is-normal');
+  console.log(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID);
+
+  // set content for elements
+  exercise.textContent = workoutName;
+  muscle.textContent = "Muscle: " + workoutMuscle;
+  equipment.textContent = "Equipment: " + workoutEquipment;
+  instruction.textContent = workoutInstruction;
+  deleteWorkoutButton.textContent = 'Delete';
+  deleteWorkoutButton.dataset.id = workoutID; // this assigns unique ID to each card's delete button
+
+
+  // append elements to card
+  cardContent.append(exercise, muscle, equipment, instruction, deleteWorkoutButton);
+  card.append(cardContent);
+
+  workoutContainer.append(card);
+
+  //function to remove workout card
+  deleteWorkoutButton.addEventListener('click', (event) => {
+    let cardIdToRemove = parseInt(event.target.dataset.id);
+    workoutResult = workoutResult.filter(card => card.id !== cardIdToRemove);
+    console.log(workoutResult);
+    //remove targeted card's HTML element
+    event.target.closest('.card').remove();
+  });
+};
+
+
 // target cards in HTML
 const card = document.querySelector('.card');
 
@@ -192,4 +209,17 @@ workoutSubmit.addEventListener('click', (event) => {
   if (workoutSearchEntry.value.trim() !== '' && card !== null) {
     card.classList.add('card');
   }
+
+  //this may need to be MOVED since some elements might be out of scope
+  // Close the modal after processing the API response (copied from first part of modal...)
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+  closeAllModals();
+  console.log('this is my data as an array', workoutResult);//checks if generated array holds data
 });
