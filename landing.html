@@ -42,18 +42,30 @@
 
         <section class="hero-body">
             <div class="container has-text-centered">
-                <div class="columns is-vcentered">
-                    <aside class="column is-5">
-                        <figure class="image is-4by3">
-                            <img src="./assets/images/fitness.png" alt="logo">
-                        </figure>
+                <div class="columns is-centered">
+                    <aside class="column is-6 container">
+                        <div>
+                            <h1 class="title is-2">
+                                Gyms In Your City
+                            </h1>
+                            <h2 class="subtitle is-4">
+                                Gym List
+                            </h2>
+                        </div>
+                        <div class="columns is-mobile is-centered">
+                            <div class="column is-6">
+                                <!--list of gyms should go here-->
+                                <div class="gym-results"></div>
+                            </div>
+                        </div>
                     </aside>
+                    <br></br>
                     <main class="column is-6 is offset-1">
                         <h1 class="title is-2">
                             Fitness Finder
                         </h1>
                         <h2 class="subtitle is-4">
-                            Gym and workout map.
+                            Workout Map
                         </h2>
                         <br> <!--modal from bulma-->
                         <div id="modal-js" class="modal">
@@ -80,8 +92,8 @@
                                                         <option>glutes</option>
                                                         <option>hamstrings</option>
                                                         <option>lats</option>
-                                                        <option>lower back</option>
-                                                        <option>middle back</option>
+                                                        <option>lower_back</option>
+                                                        <option>middle_back</option>
                                                         <option>neck</option>
                                                         <option>quadriceps</option>
                                                         <option>traps</option>
@@ -94,7 +106,6 @@
                                             class="button is-success">Submit</button>
                                     </form>
                                     <br></br>
-                                    <br></br>
                                 </section>
                                 <footer class="modal-card-foot">
                                     <div class="buttons">
@@ -103,13 +114,11 @@
                                 </footer>
                             </div>
                         </div>
-                        <button class="js-modal-trigger" data-target="modal-js">Add Workout</button>
+                        <button class="js-modal-trigger" data-target="modal-js">Add Muscle Group</button>
+                        <br></br>
+                        <div class="workout-results"></div>
                     </main>
                 </div>
-            </div>
-
-            <div class="workout-results">
-
             </div>
         </section>
 

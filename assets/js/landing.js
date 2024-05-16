@@ -138,7 +138,7 @@ function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruc
   // centers content horizontally
   card.classList.add('mx-auto');
   // sets max width
-  card.style.maxWidth = '600px';
+  card.style.maxWidth = '400px';
 
   // create elements for workout details
   const cardContent = document.createElement('div');
@@ -216,3 +216,59 @@ workoutSubmit.addEventListener('click', (event) => {
   closeAllModals();
   console.log('this is my data as an array', workoutResult);//checks if generated array holds data
 });
+
+
+
+
+
+
+
+
+
+
+// // render function to generate cards with gym data and delete button functionality
+// function renderGyms(gymName, gymPhone, gymAddress) {
+
+//   const cardGym = document.createElement('div');
+//   const gymContainer = document.querySelector('.gym-results');
+
+//   // Add Bulma's card class to style the card
+//   cardGym.classList.add('card');
+//   // centers content horizontally
+//   cardGym.classList.add('mx-auto');
+//   // sets max width
+//   cardGym.style.maxWidth = '600px';
+//   // sets min width
+//   cardGym.style.minWidth = '600px';
+//   // sets min height
+//   cardGym.style.minHeight = '800px';
+
+//   // create elements for gym details
+//   const cardGymContent = document.createElement('div');
+//   cardGymContent.classList.add('card-content');
+
+//   cardGymContent.style.maxHeight = '200px';
+//   // allows a vertical scrolling feature
+//   cardGymContent.style.overflowY = 'auto';
+
+//   const name = document.createElement('p');
+//   // add bulma css style to cards
+//   name.classList.add('title', 'is-4');
+
+//   const number = document.createElement('p');
+//   number.classList.add('subtitle', 'is-6');
+
+//   const address = document.createElement('p');
+//   address.classList.add('content');
+
+//   // set content for elements
+//   name.textContent = gymName;
+//   number.textContent = "Phone Number: " + gymPhone;
+//   address.textContent = "Address: " + gymAddress;
+
+//   // append elements to card
+//   cardGymContent.append(name, number, address);
+//   cardGym.append(cardGymContent);
+
+//   gymContainer.append(cardGym);
+// };
