@@ -4,7 +4,7 @@
 
 ## Description
 
-Whether you're at home or on the go, Fitness Finder find the nearest gym to you! After giving you a list of the closest gym you can also search the muscle group ypur targeting to find a list of workout ideas!
+Whether you're at home or on the go, Fitness Finder finds the nearest gym to you! After giving you a list of the closest gym you can also search the muscle group your targeting to find a list of workout ideas!
 
 ## Table of Contents
 
