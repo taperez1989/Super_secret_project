@@ -96,16 +96,16 @@ const getNinjaApi = (event) => {
 
 
 // currently working on rendering the gym locations, we got stuck on for loop section, I dont think its firing
-const searchedCity = localStorage.getItem('city');
+const searchedCity = JSON.parse(localStorage.getItem('city'));
 const gymArr = [];
-console.log(gymArr);
+
 // API function for gym locator from index html
 async function searchGyms(searchedCity) {
   const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
   const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
-
+console.log(searchedCity);
   const queryParams = new URLSearchParams({
-    query: `Gyms in ${searchedCity}`,
+    query: `Gyms in ${searchedCity[searchedCity.length-1].searchedCity}`,
     limit: 10,
     language: 'en',
     region: 'us'
@@ -125,20 +125,23 @@ async function searchGyms(searchedCity) {
     const result = await response.json();
     console.log(result);
     
-    for (let i = 0; i < result.length; i += 2) {
-      let gymName = result[i].name;
-      let gymAddress = result[i].address;
-      let gymPhone = result[i].phone_number;
+   
+    for (let i = 0; i < result.data.length; i += 2) {
+      const data = result.data[i]
+      let gymName = data.name;
+      let gymAddress = data.address;
+      let gymPhone = data.phone_number;
+      let googleMap = data.place_link;
       
       let gymLocations = {
         name: gymName,
         address: gymAddress,
         phoneNumber: gymPhone,
-
+        mapLocation: googleMap,
       };
 
       gymArr.push(gymLocations);
-      console.log(result);
+      console.log(gymArr);
     }
   }
   catch (error) {
@@ -147,6 +150,8 @@ async function searchGyms(searchedCity) {
   }
 };
 searchGyms(searchedCity);
+
+
 // render function to generate cards with workout data and delete button functionality
 function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID) {
 
