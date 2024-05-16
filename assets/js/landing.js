@@ -96,14 +96,19 @@ const getNinjaApi = (event) => {
     });
 };
 
+
+// currently working on rendering the gym locations, we got stuck on for loop section, I dont think its firing
+const searchedCity = JSON.parse(localStorage.getItem('city'));
+const gymArr = [];
+
 // API function for gym locator from index html
-async function searchGyms(city) {
+async function searchGyms(searchedCity) {
   const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
   const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
-
+console.log(searchedCity);
   const queryParams = new URLSearchParams({
-    query: `Gyms in ${city}`,
-    limit: 20,
+    query: `Gyms in ${searchedCity[searchedCity.length-1].searchedCity}`,
+    limit: 10,
     language: 'en',
     region: 'us'
   });
@@ -120,12 +125,34 @@ async function searchGyms(city) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
+    console.log(result);
+    
+   
+    for (let i = 0; i < result.data.length; i += 2) {
+      const data = result.data[i]
+      let gymName = data.name;
+      let gymAddress = data.address;
+      let gymPhone = data.phone_number;
+      let googleMap = data.place_link;
+      
+      let gymLocations = {
+        name: gymName,
+        address: gymAddress,
+        phoneNumber: gymPhone,
+        mapLocation: googleMap,
+      };
 
-  } catch (error) {
+      gymArr.push(gymLocations);
+      console.log(gymArr);
+    }
+  }
+  catch (error) {
     console.error('Error fetching gym data:', error);
     return null;
   }
 };
+searchGyms(searchedCity);
+
 
 // render function to generate cards with workout data and delete button functionality
 function renderCard(workoutName, workoutMuscle, workoutEquipment, workoutInstruction, workoutID) {
