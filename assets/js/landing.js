@@ -104,7 +104,7 @@ const gymArr = [];
 // API function for gym locator from index html
 async function searchGyms(searchedCity) {
   const apiUrl = 'https://local-business-data.p.rapidapi.com/search';
-  const apiKey = 'bddf7ad5dcmsh0f47b444a858a99p1e7f0ejsna5b3c2abc0c5';
+  const apiKey = '1986133d37msh0f78bf40eb38ca0p1b1749jsnde57de8a2450';
 console.log(searchedCity);
   const queryParams = new URLSearchParams({
     query: `Gyms in ${searchedCity[searchedCity.length-1].searchedCity}`,
@@ -123,27 +123,30 @@ console.log(searchedCity);
   };
 
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
+    // const response = await fetch(url, options);
+    // const result = await response.json();
+  
     console.log(result);
     
    
     for (let i = 0; i < result.data.length; i += 2) {
       const data = result.data[i]
-      let gymName = data.name;
-      let gymAddress = data.address;
-      let gymPhone = data.phone_number;
-      let googleMap = data.place_link;
+      // let gymName = data.name;
+      // let gymAddress = data.address;
+      // let gymPhone = data.phone_number;
+      // let googleMap = data.place_link;
       
-      let gymLocations = {
-        name: gymName,
-        address: gymAddress,
-        phoneNumber: gymPhone,
-        mapLocation: googleMap,
-      };
+      // let gymLocations = {
+      //   name: gymName,
+      //   address: gymAddress,
+      //   phoneNumber: gymPhone,
+      //   mapLocation: googleMap,
+      // };
 
-      gymArr.push(gymLocations);
-      console.log(gymArr);
+      // gymArr.push(gymLocations);
+      // console.log(gymArr);
+      renderGyms(data);
+
     }
   }
   catch (error) {
@@ -152,6 +155,62 @@ console.log(searchedCity);
   }
 };
 searchGyms(searchedCity);
+// renderGyms();
+
+// render function to generate cards with gym data and delete button functionality
+function renderGyms(gym) {
+
+  const cardGym = document.createElement('div');
+  const gymContainer = document.querySelector('.gym-results');
+
+  // Add Bulma's card class to style the card
+ gymContainer.classList.add('card');
+  // centers content horizontally
+ gymContainer.classList.add('mx-auto');
+  // sets max width
+//  gymContainer.style.maxWidth = '600px';
+  // sets min width
+ gymContainer.style.width = '100%';
+  // sets min height
+ gymContainer.style.minHeight = '800px';
+
+  // create elements for gym details
+  const cardGymContent = document.createElement('div');
+  cardGymContent.classList.add('card-content');
+
+  cardGymContent.style.maxHeight = '200px';
+  // allows a vertical scrolling feature
+  cardGymContent.style.overflowY = 'auto';
+
+  const name = document.createElement('p');
+  // add bulma css style to cards
+  name.classList.add('title', 'is-4');
+
+  const number = document.createElement('p');
+  number.classList.add('subtitle', 'is-6');
+
+  const address = document.createElement('p');
+  address.classList.add('content');
+  address.style.width='100%'
+
+  const mapLocation = document.createElement('p');
+  mapLocation.classList.add('content');
+
+  // set content for elements
+  name.textContent = gym.name;
+  number.textContent = "Phone Number: " + gym.phone_number;
+  address.textContent = "Address: " + gym.address;
+  mapLocation.textContent = gym.place_link;
+
+  // append elements to card
+  // cardGymContent.append(name, number, address, mapLocation);
+  // cardGym.append(name, number, address, mapLocation);
+
+  gymContainer.append(name, number, address);
+};
+
+
+
 
 
 // render function to generate cards with workout data and delete button functionality
@@ -253,49 +312,3 @@ workoutSubmit.addEventListener('click', (event) => {
 
 
 
-// // render function to generate cards with gym data and delete button functionality
-// function renderGyms(gymName, gymPhone, gymAddress) {
-
-//   const cardGym = document.createElement('div');
-//   const gymContainer = document.querySelector('.gym-results');
-
-//   // Add Bulma's card class to style the card
-//   cardGym.classList.add('card');
-//   // centers content horizontally
-//   cardGym.classList.add('mx-auto');
-//   // sets max width
-//   cardGym.style.maxWidth = '600px';
-//   // sets min width
-//   cardGym.style.minWidth = '600px';
-//   // sets min height
-//   cardGym.style.minHeight = '800px';
-
-//   // create elements for gym details
-//   const cardGymContent = document.createElement('div');
-//   cardGymContent.classList.add('card-content');
-
-//   cardGymContent.style.maxHeight = '200px';
-//   // allows a vertical scrolling feature
-//   cardGymContent.style.overflowY = 'auto';
-
-//   const name = document.createElement('p');
-//   // add bulma css style to cards
-//   name.classList.add('title', 'is-4');
-
-//   const number = document.createElement('p');
-//   number.classList.add('subtitle', 'is-6');
-
-//   const address = document.createElement('p');
-//   address.classList.add('content');
-
-//   // set content for elements
-//   name.textContent = gymName;
-//   number.textContent = "Phone Number: " + gymPhone;
-//   address.textContent = "Address: " + gymAddress;
-
-//   // append elements to card
-//   cardGymContent.append(name, number, address);
-//   cardGym.append(cardGymContent);
-
-//   gymContainer.append(cardGym);
-// };
