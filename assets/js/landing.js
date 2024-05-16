@@ -123,28 +123,15 @@ console.log(searchedCity);
   };
 
   try {
-    // const response = await fetch(url, options);
-    // const result = await response.json();
+    const response = await fetch(url, options);
+    const result = await response.json();
   
     console.log(result);
     
    
     for (let i = 0; i < result.data.length; i += 2) {
       const data = result.data[i]
-      // let gymName = data.name;
-      // let gymAddress = data.address;
-      // let gymPhone = data.phone_number;
-      // let googleMap = data.place_link;
-      
-      // let gymLocations = {
-      //   name: gymName,
-      //   address: gymAddress,
-      //   phoneNumber: gymPhone,
-      //   mapLocation: googleMap,
-      // };
-
-      // gymArr.push(gymLocations);
-      // console.log(gymArr);
+  
       renderGyms(data);
 
     }
@@ -155,7 +142,6 @@ console.log(searchedCity);
   }
 };
 searchGyms(searchedCity);
-// renderGyms();
 
 // render function to generate cards with gym data and delete button functionality
 function renderGyms(gym) {
@@ -167,12 +153,12 @@ function renderGyms(gym) {
  gymContainer.classList.add('card');
   // centers content horizontally
  gymContainer.classList.add('mx-auto');
-  // sets max width
-//  gymContainer.style.maxWidth = '600px';
+  // sets padding on top of location name
+ gymContainer.classList.add('px-4')
   // sets min width
- gymContainer.style.width = '100%';
+ gymContainer.style.width = 'auto';
   // sets min height
- gymContainer.style.minHeight = '800px';
+ gymContainer.style.minHeight = '1170px';
 
   // create elements for gym details
   const cardGymContent = document.createElement('div');
@@ -184,7 +170,7 @@ function renderGyms(gym) {
 
   const name = document.createElement('p');
   // add bulma css style to cards
-  name.classList.add('title', 'is-4');
+  name.classList.add('title', 'is-4', 'pt-6');
 
   const number = document.createElement('p');
   number.classList.add('subtitle', 'is-6');
@@ -201,10 +187,6 @@ function renderGyms(gym) {
   number.textContent = "Phone Number: " + gym.phone_number;
   address.textContent = "Address: " + gym.address;
   mapLocation.textContent = gym.place_link;
-
-  // append elements to card
-  // cardGymContent.append(name, number, address, mapLocation);
-  // cardGym.append(name, number, address, mapLocation);
 
   gymContainer.append(name, number, address);
 };
@@ -302,13 +284,3 @@ workoutSubmit.addEventListener('click', (event) => {
   closeAllModals();
   console.log('this is my data as an array', workoutResult);//checks if generated array holds data
 });
-
-
-
-
-
-
-
-
-
-
